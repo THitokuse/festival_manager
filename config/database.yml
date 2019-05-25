@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: festival_management
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: festival_manager_development
+  host: db
+
+test:
+  <<: *default
+  database: festival_manager_test
+  host: db
+
+production:
+  <<: *default
+  database: festival_manager_production
+  username: root
+  password: <%= ENV['FESTIVALMANAGEMENT_DATABASE_PASSWORD'] %>
